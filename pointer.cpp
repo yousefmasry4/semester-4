@@ -119,6 +119,40 @@ void print_lost(struct node** main_l,struct node** main_p){//q5
       l=l->next;
    }
 }
+void union_l(struct node ** h1,struct node** h2){
+   struct node * l=(*h1);
+   while(l){
+      struct node* p=(*h2);
+      while(p){
+        if(l->data == p->data){
+            l->data=NULL;
+         }
+         p=p->next;
+      }
+   l=l->next;
+   }
+   struct node * l2=(*h1);
+   struct node* p2=(*h2);
+   while(l2){
+      if(l2->data != NULL){
+         insert_at_the_end(&p2,l2->data);
+      }
+      l2=l2->next;
+   }
+
+}
+void revers(struct node** head){
+   struct node* current=(*head);
+   struct node* next=NULL;
+   struct node* prev=NULL;
+   while(current != NULL){
+      next=current->next;
+      current->next=prev;
+      prev=current;
+      current=next;
+   }
+   *head=prev;
+}
 int main(){
    struct node* newnode=creat(5);
    insert_in_b(&newnode,4);
@@ -139,4 +173,12 @@ int main(){
    print_lost(&l,&p);
    insert_in_middle(&newnode,99);
    printlist(&newnode);
+   puts("before");//q8
+   printlist(&p);
+   printlist(&l);
+   union_l(&l,&p);
+   puts("after");
+   printlist(&p);
+   revers(&p);//q10
+   printlist(&p);
 }
