@@ -1,4 +1,4 @@
-//1->6
+//1->6,8,10
 #include <stdio.h>
 #include <stdlib.h>
 struct node{
